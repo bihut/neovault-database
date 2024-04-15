@@ -1,0 +1,315 @@
+{
+    "swagger": "2.0",
+    "basePath": "/",
+    "paths": {
+        "/api/neonates": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "post_neonates_list",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/neonates"
+                        }
+                    }
+                ],
+                "tags": [
+                    ""
+                ]
+            }
+        },
+        "/api/neonates/{idneonate}/filter": {
+            "parameters": [
+                {
+                    "name": "idneonate",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "post_filter_list",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/filter"
+                        }
+                    }
+                ],
+                "tags": [
+                    ""
+                ]
+            }
+        }
+    },
+    "info": {
+        "title": "NeoVault API",
+        "version": "1.0",
+        "description": "API for the management of neonates and their medical information"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "",
+            "description": "Neonates Operations"
+        },
+        {
+            "name": "",
+            "description": "Neonates Physiological and Pose data"
+        }
+    ],
+    "definitions": {
+        "neonates": {
+            "properties": {
+                "gender": {
+                    "description": "Neonate gender [0,0] for male, [1,1] for female and [0,1] for both",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/Gender"
+                        }
+                    ]
+                },
+                "age": {
+                    "description": "Gestional age (in weeks)",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/Age"
+                        }
+                    ]
+                },
+                "size": {
+                    "description": "Size at birth (centimeters)",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/Size"
+                        }
+                    ]
+                },
+                "headsize": {
+                    "description": "Head circumference at birth (centimeters)",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/Headsize"
+                        }
+                    ]
+                },
+                "weight": {
+                    "description": "Weight at birth (grams)",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/Weight"
+                        }
+                    ]
+                },
+                "apgar1": {
+                    "description": "APGAR score at 1 minute information",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/Apgar1"
+                        }
+                    ]
+                },
+                "apgar5": {
+                    "description": "APGAR score at 5 minutes information",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/Apgar5"
+                        }
+                    ]
+                },
+                "crib": {
+                    "description": "Crib information",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/Crib"
+                        }
+                    ]
+                },
+                "additional": {
+                    "description": "Additional information",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/Additional"
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "Gender": {
+            "properties": {
+                "min": {
+                    "type": "integer",
+                    "description": "Minimum value for gender",
+                    "example": 0
+                },
+                "max": {
+                    "type": "integer",
+                    "description": "Maximum value for gender",
+                    "example": 1
+                }
+            },
+            "type": "object"
+        },
+        "Age": {
+            "properties": {
+                "min": {
+                    "type": "integer",
+                    "description": "Minimum age",
+                    "example": -1000
+                },
+                "max": {
+                    "type": "integer",
+                    "description": "Maximum age",
+                    "example": 1000
+                }
+            },
+            "type": "object"
+        },
+        "Size": {
+            "properties": {
+                "min": {
+                    "type": "integer",
+                    "description": "Minimum size",
+                    "example": -1000
+                },
+                "max": {
+                    "type": "integer",
+                    "description": "Maximum size",
+                    "example": 1000
+                }
+            },
+            "type": "object"
+        },
+        "Headsize": {
+            "properties": {
+                "min": {
+                    "type": "integer",
+                    "description": "Minimum head size",
+                    "example": -1000
+                },
+                "max": {
+                    "type": "integer",
+                    "description": "Maximum head size",
+                    "example": -1000
+                }
+            },
+            "type": "object"
+        },
+        "Weight": {
+            "properties": {
+                "min": {
+                    "type": "integer",
+                    "description": "Minimum weight",
+                    "example": -1000
+                },
+                "max": {
+                    "type": "integer",
+                    "description": "Maximum weight",
+                    "example": 5000
+                }
+            },
+            "type": "object"
+        },
+        "Apgar1": {
+            "properties": {
+                "min": {
+                    "type": "integer",
+                    "description": "Minimum APGAR score at 1 minute",
+                    "example": -1000
+                },
+                "max": {
+                    "type": "integer",
+                    "description": "Maximum APGAR score at 1 minute",
+                    "example": -1000
+                }
+            },
+            "type": "object"
+        },
+        "Apgar5": {
+            "properties": {
+                "min": {
+                    "type": "integer",
+                    "description": "Minimum APGAR score at 5 minutes",
+                    "example": -1000
+                },
+                "max": {
+                    "type": "integer",
+                    "description": "Maximum APGAR score at 5 minutes",
+                    "example": 1000
+                }
+            },
+            "type": "object"
+        },
+        "Crib": {
+            "properties": {
+                "min": {
+                    "type": "integer",
+                    "description": "Minimum crib value",
+                    "example": -1000
+                },
+                "max": {
+                    "type": "integer",
+                    "description": "Maximum crib value",
+                    "example": 1000
+                }
+            },
+            "type": "object"
+        },
+        "Additional": {
+            "properties": {
+                "braininjury": {
+                    "type": "boolean",
+                    "description": "Indicates if the neonate suffered from brain injury",
+                    "example": false
+                }
+            },
+            "type": "object"
+        },
+        "filter": {
+            "required": [
+                "endtime",
+                "starttime"
+            ],
+            "properties": {
+                "starttime": {
+                    "type": "integer",
+                    "description": "Starttime in milliseconds"
+                },
+                "endtime": {
+                    "type": "integer",
+                    "description": "End time in milliseconds"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "responses": {
+        "ParseError": {
+            "description": "When a mask can't be parsed"
+        },
+        "MaskError": {
+            "description": "When any error occurs on mask"
+        }
+    }
+}
